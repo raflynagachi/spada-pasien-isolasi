@@ -5,6 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.tseries.offsets import DateOffset
 
+st.title('Tugas Akhir: Prediksi Jumlah Pasien Isolasi COVID-19')
+
 # set sidebar for input
 min_date = datetime.datetime.strptime('2021-11-21', '%Y-%m-%d').date()
 max_date = min_date + datetime.timedelta(days=365)
@@ -21,3 +23,5 @@ data_merge = pd.read_csv('data_merge.csv', parse_dates=[0], index_col=0)
 
 data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
 st.line_chart(data_merge[['Total Pasien Isolasi', 'forecast']])
+
+#about us
