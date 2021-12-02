@@ -20,4 +20,4 @@ loaded_model = pickle.load(open(filename, 'rb'))
 data_merge = pd.read_csv('data_merge.csv')
 
 data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
-st.line_chart(data_merge[['Total Pasien Isolasi', 'forecast']])
+st.line_chart(data_merge[['forecast']])
