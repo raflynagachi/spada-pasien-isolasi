@@ -24,5 +24,6 @@ data_merge = pd.read_csv('data_merge.csv')
 data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
 if calculate_button == True:
     fig, ax = plt.subplots()
-    ax.plot(data_merge[['Total Pasien Isolasi', 'forecast']])
+    ax.plot(data_merge['Total Pasien Isolasi'])
+    ax.plot(data_merge['forecast'])
     st.pyplot(fig)
