@@ -13,6 +13,8 @@ datediff = (date - min_date).days
 date_end = 356+datediff
 # st.write((date_end))
 
+calculate_button = st.sidebar.button('Predict', on_click=None)
+
 # load the model from disk
 filename = 'sarimax_model.pkl'
 loaded_model = pickle.load(open(filename, 'rb'))
@@ -20,6 +22,7 @@ loaded_model = pickle.load(open(filename, 'rb'))
 data_merge = pd.read_csv('data_merge.csv')
 
 data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
-fig, ax = plt.subplots()
-ax.plot(data_merge[['Total Pasien Isolasi', 'forecast']])
-st.pyplot(fig)
+if calculate_button == True:
+    fig, ax = plt.subplots()
+    ax.plot(data_merge[['Total Pasien Isolasi', 'forecast']])
+    st.pyplot(fig)
