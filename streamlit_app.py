@@ -17,7 +17,7 @@ date_end = 356+datediff
 filename = 'sarimax_model.pkl'
 loaded_model = pickle.load(open(filename, 'rb'))
 
-data_merge = pd.read_csv('data_merge.csv', index_col=0)
+data_merge = pd.read_csv('data_merge.csv', parse_dates=[0], index_col=0)
 
 data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
 st.write(data_merge.head())
