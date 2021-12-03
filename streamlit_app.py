@@ -14,7 +14,7 @@ def prediksi(model, days):
   df_prediksi = forecast.predicted_mean
   return df_prediksi
 
-def plot_data(df_a, df_b):
+def plot_data(col, df_a, df_b):
   plt.figure(figsize=(12,5))
   fig, ax = plt.subplots()
   # Plot past CO2 levels
@@ -25,7 +25,7 @@ def plot_data(df_a, df_b):
 
   # Plot legend and show figure
   ax.legend()
-  st.pyplot(fig)
+  col.pyplot(fig)
 ############################# END FUNCTION DEF
 
 ############################# STREAMLIT CODE
@@ -37,7 +37,7 @@ max_date = min_date + datetime.timedelta(days=365)
 date = st.sidebar.date_input('Pick date: ', min_value=min_date, max_value=max_date)
 datediff = (date - min_date).days
 date_end = 356+datediff
-st.write(("{} days after {}: \n".format(date_end, min_date)))
+st.write(("{} days after {}: \n".format(datediff, min_date)))
 
 # load dataset for plotting purpose
 df_isolasi = pd.read_csv('dataset/df_isolasi.csv', parse_dates=[0], index_col=0)
@@ -53,6 +53,9 @@ icu_model = pickle.load(open(filename_icu, 'rb'))
 df_prediksi_isolasi = prediksi(isolasi_model, datediff)
 df_prediksi_icu = prediksi(icu_model, datediff)
 # plotting
-plot_data(df_isolasi, df_prediksi_isolasi)
-plot_data(df_isolasi, df_prediksi_icu)
+col1, col2 = st.columns(2)
+col1.write("Prediksi pasien isolasi")
+plot_data(col1, df_isolasi, df_prediksi_isolasi)
+col2.write("Prediksi ICU")
+plot_data(col2, df_icu, df_prediksi_icu)
 ############################# END STREAMLIT CODE
