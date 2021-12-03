@@ -8,7 +8,7 @@ from pages import about, forecasting # import your pages here
 app = MultiPage()
 
 # Title of the main page
-st.title("Data Storyteller Application")
+st.title("Tugas Akhir: Forecasting")
 
 # Add all your applications (pages) here
 app.add_page("Forecasting", forecasting.app)

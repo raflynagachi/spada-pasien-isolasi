@@ -5,30 +5,30 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.tseries.offsets import DateOffset
 
+############################# FUNCTION DEF
+def prediksi(model, days):
+      # Create forecast object
+  forecast = model.get_forecast(steps=days)
+
+  # Extract predicted mean attribute
+  df_prediksi = forecast.predicted_mean
+  return df_prediksi
+
+def plot_data(col, df_a, df_b):
+  plt.figure(figsize=(12,5))
+  fig, ax = plt.subplots()
+  # Plot past CO2 levels
+  ax.plot(df_a.index, df_a, label='past')
+  
+  # Plot the prediction means as line
+  ax.plot(df_b.index, df_b, label='predicted')
+
+  # Plot legend and show figure
+  ax.legend()
+  col.pyplot(fig)
+############################# END FUNCTION DEF
+
 def app():
-  ############################# FUNCTION DEF
-  def prediksi(model, days):
-        # Create forecast object
-    forecast = model.get_forecast(steps=days)
-
-    # Extract predicted mean attribute
-    df_prediksi = forecast.predicted_mean
-    return df_prediksi
-
-  def plot_data(col, df_a, df_b):
-    plt.figure(figsize=(12,5))
-    fig, ax = plt.subplots()
-    # Plot past CO2 levels
-    ax.plot(df_a.index, df_a, label='past')
-    
-    # Plot the prediction means as line
-    ax.plot(df_b.index, df_b, label='predicted')
-
-    # Plot legend and show figure
-    ax.legend()
-    col.pyplot(fig)
-  ############################# END FUNCTION DEF
-
   ############################# STREAMLIT CODE
   st.title('Tugas Akhir: Prediksi Jumlah Pasien Isolasi COVID-19')
 
@@ -60,3 +60,6 @@ def app():
   col2.write("Prediksi ICU")
   plot_data(col2, df_icu, df_prediksi_icu)
   ############################# END STREAMLIT CODE
+  
+  if __name__ == '__main__':
+    app()
