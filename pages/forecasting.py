@@ -61,5 +61,5 @@ def app():
   plot_data(col2, df_icu, df_prediksi_icu)
   ############################# END STREAMLIT CODE
   
-  if __name__ == '__main__':
-    app()
+if __name__ == '__main__':
+  app()
