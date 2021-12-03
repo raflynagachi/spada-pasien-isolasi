@@ -5,6 +5,30 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.tseries.offsets import DateOffset
 
+############################# FUNCTION DEF
+def prediksi(model, days):
+      # Create forecast object
+  forecast = model.get_forecast(steps=days)
+
+  # Extract predicted mean attribute
+  df_prediksi = forecast.predicted_mean
+  return df_prediksi
+
+def plot_data(df_a, df_b):
+  plt.figure(figsize=(12,5))
+  fig, ax = plt.subplots()
+  # Plot past CO2 levels
+  ax.plot(df_a.index, df_a, label='past')
+  
+  # Plot the prediction means as line
+  ax.plot(df_b.index, df_b, label='predicted')
+
+  # Plot legend and show figure
+  ax.legend()
+  st.pyplot(fig)
+############################# END FUNCTION DEF
+
+############################# STREAMLIT CODE
 st.title('Tugas Akhir: Prediksi Jumlah Pasien Isolasi COVID-19')
 
 # set sidebar for input
@@ -15,13 +39,20 @@ datediff = (date - min_date).days
 date_end = 356+datediff
 st.write(("{} days after {}: \n".format(date_end, min_date)))
 
-# load the model from disk
-filename = 'sarimax_model.pkl'
-loaded_model = pickle.load(open(filename, 'rb'))
+# load dataset for plotting purpose
+df_isolasi = pd.read_csv('dataset/df_isolasi.csv', parse_dates=[0], index_col=0)
+df_icu = pd.read_csv('dataset/df_icu.csv', parse_dates=[0], index_col=0)
 
-data_merge = pd.read_csv('data_merge.csv', parse_dates=[0], index_col=0)
+# load the saved model
+filename_isolasi = 'saved_model/isolasi_model.pkl'
+filename_icu = 'saved_model/icu_model.pkl'
+isolasi_model = pickle.load(open(filename_isolasi, 'rb'))
+icu_model = pickle.load(open(filename_icu, 'rb'))
 
-data_merge['forecast'] = loaded_model.predict(start = 356, end = date_end, dynamic= True)
-st.line_chart(data_merge[['Total Pasien Isolasi', 'forecast']])
-
-#about us
+# predict
+df_prediksi_isolasi = prediksi(isolasi_model, datediff)
+df_prediksi_icu = prediksi(icu_model, datediff)
+# plotting
+plot_data(df_isolasi, df_prediksi_isolasi)
+plot_data(df_isolasi, df_prediksi_icu)
+############################# END STREAMLIT CODE
