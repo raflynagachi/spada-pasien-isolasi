@@ -41,12 +41,12 @@ def app():
   st.write(("{} days after {}: \n".format(datediff, min_date)))
 
   # load dataset for plotting purpose
-  df_isolasi = pd.read_csv('dataset/df_isolasi.csv', parse_dates=[0], index_col=0)
-  df_icu = pd.read_csv('dataset/df_icu.csv', parse_dates=[0], index_col=0)
+  df_isolasi = pd.read_csv('../dataset/df_isolasi.csv', parse_dates=[0], index_col=0)
+  df_icu = pd.read_csv('../dataset/df_icu.csv', parse_dates=[0], index_col=0)
 
   # load the saved model
-  filename_isolasi = 'saved_model/isolasi_model.pkl'
-  filename_icu = 'saved_model/icu_model.pkl'
+  filename_isolasi = '../saved_model/isolasi_model.pkl'
+  filename_icu = '../saved_model/icu_model.pkl'
   isolasi_model = pickle.load(open(filename_isolasi, 'rb'))
   icu_model = pickle.load(open(filename_icu, 'rb'))
 
