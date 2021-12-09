@@ -30,12 +30,12 @@ def plot_data(col, df_a, df_b):
 
 def app():
   ############################# STREAMLIT CODE
-  st.title('Tugas Akhir: Prediksi Jumlah Pasien Isolasi COVID-19')
-
+  st.header('Tugas Akhir: Analisis Pasien Isolasi Covid-19 guna Optimalisasi Ketersediaan Tempat Tidur di Rumah Sakit (studi kasus: DKI Jakarta)')
+  st.markdown('---')
   # set sidebar for input
   min_date = datetime.datetime.strptime('2021-11-21', '%Y-%m-%d').date()
   max_date = min_date + datetime.timedelta(days=365)
-  date = st.date_input('Pick date: ', min_value=min_date, max_value=max_date)
+  date = st.date_input('Pick a date: ', min_value=min_date, max_value=max_date)
   datediff = (date - min_date).days
   date_end = 356+datediff
   st.write(("{} days after {}: \n".format(datediff, min_date)))
