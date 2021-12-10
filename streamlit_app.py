@@ -16,7 +16,6 @@ app.add_page("Forecasting", forecasting.app)
 app.add_page("Latar Belakang", background.app)
 app.add_page("Rumusan Masalah", problem.app)
 app.add_page("Tujuan Penelitian", purposes.app)
-app.add_page("Pemabahasan", explanation.app)
 app.add_page("About Us", about.app)
 
 # The main app
