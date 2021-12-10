@@ -3,7 +3,7 @@ import streamlit as st
 # Custom imports 
 from multipage import MultiPage
 from pages import background, problem, purposes,\
-    about, forecasting, explanation # import your pages here
+    about, forecasting # import your pages here
 
 # Create an instance of the app 
 app = MultiPage()
