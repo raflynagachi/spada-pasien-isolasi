@@ -72,13 +72,13 @@ def app():
   df_rekom_isolasi.sort_values('TT Isolasi Batas Atas', ascending=False, inplace=True)
   df_rekom_icu.sort_values('TT ICU Batas Atas', ascending=False, inplace=True)
 
-  st.write('Rekomendasi Jumlah Tempat Tidur Isolasi pada periode 22-11-2021 sampai {} :\n {} - {}.'.format(
+  st.markdown('Rekomendasi Jumlah Tempat Tidur Isolasi pada periode 22-11-2021 sampai {} :\n {} - {}.'.format(
     date,
     df_rekom_isolasi['TT Isolasi Batas Bawah'][0],
     df_rekom_isolasi['TT Isolasi Batas Atas'][0]
   ))
 
-  st.write('Rekomendasi Jumlah Tempat Tidur ICU pada periode 22-11-2021 sampai {} :\n {} - {}.'.format(
+  st.markdown('Rekomendasi Jumlah Tempat Tidur ICU pada periode 22-11-2021 sampai {} :\n {} - {}.'.format(
     date,
     df_rekom_icu['TT ICU Batas Bawah'][0],
     df_rekom_icu['TT ICU Batas Atas'][0]
