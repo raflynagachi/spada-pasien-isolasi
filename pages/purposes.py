@@ -8,6 +8,6 @@ def app():
       
     Tujuan penelitian dibagi menjadi 2, yakni:
     * Prediksi jumlah pasien ICU dan isolasi COVID-19
-    * Rekomendasi jumlah tempat tidur ICU dan isolasi optimum berdasarkan BOR dan TOI
+    * Rekomendasi jumlah tempat tidur ICU dan isolasi optimum berdasarkan BOR
     """)
     # * Mengestimasi kebutuhan oksigen harian

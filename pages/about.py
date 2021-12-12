@@ -6,7 +6,7 @@ def app():
     Nama Peserta:  
     * Rahmatsyah Firdaus  
     * Rafly Rigan Nagachi  
-    * M ilhamsyah  
+    * M Ilhamsyah  
       
     Universitas Host: Universitas Gadjah Mada  
     Kelas: UGM01  

@@ -12,12 +12,12 @@ app = MultiPage()
 st.title("UGM-01 Kelompok 9")
 
 # Add all your applications (pages) here
-app.add_page("Forecasting", forecasting.app)
 app.add_page("Latar Belakang", background.app)
 app.add_page("Rumusan Masalah", problem.app)
 app.add_page("Tujuan Penelitian", purposes.app)
 app.add_page("Pembahasan", explaination.app)
 app.add_page("Kesimpulan", summary.app)
+app.add_page("Forecasting", forecasting.app)
 app.add_page("About Us", about.app)
 
 # The main app
