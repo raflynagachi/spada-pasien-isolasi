@@ -53,12 +53,35 @@ def app():
   # predict
   df_prediksi_isolasi = prediksi(isolasi_model, datediff)
   df_prediksi_icu = prediksi(icu_model, datediff)
+
   # plotting
   col1, col2 = st.columns(2)
   col1.write("Prediksi pasien isolasi")
   plot_data(col1, df_isolasi, df_prediksi_isolasi)
   col2.write("Prediksi ICU")
   plot_data(col2, df_icu, df_prediksi_icu)
+
+  # rekomendasi 
+  df_rekom_isolasi = pd.DataFrame()
+  df_rekom_icu = pd.DataFrame()
+  df_rekom_isolasi['TT Isolasi Batas Atas'] = round(df_prediksi_isolasi/0.6)
+  df_rekom_isolasi['TT Isolasi Batas Bawah'] = round(df_prediksi_isolasi/0.85)
+  df_rekom_icu['TT ICU Batas Atas'] = round(df_prediksi_icu/0.6)
+  df_rekom_icu['TT ICU Batas Bawah'] = round(df_prediksi_icu/0.85)
+
+  df_rekom_isolasi.sort_values('TT Isolasi Batas Atas', ascending=False, inplace=True)
+  df_rekom_icu.sort_values('TT ICU Batas Atas', ascending=False, inplace=True)
+
+  st.write('Rekomendasi Jumlah Tempat Tidur Isolasi pada periode 22-11-2021 sampai 21-12-2021 adalah {} - {}.'.format(
+    df_rekom_isolasi['TT Isolasi Batas Bawah'][0],
+    df_rekom_isolasi['TT Isolasi Batas Atas'][0]
+  ))
+
+  st.write('Rekomendasi Jumlah Tempat Tidur ICU pada periode 22-11-2021 sampai 21-12-2021 adalah {} - {}.'.format(
+    df_rekom_icu['TT ICU Batas Bawah'][0],
+    df_rekom_icu['TT ICU Batas Atas'][0]
+  ))
+
   ############################# END STREAMLIT CODE
   
 if __name__ == '__main__':

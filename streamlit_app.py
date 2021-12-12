@@ -3,7 +3,7 @@ import streamlit as st
 # Custom imports 
 from multipage import MultiPage
 from pages import background, problem, purposes,\
-    about, forecasting # import your pages here
+    about, forecasting, explaination, summary # import your pages here
 
 # Create an instance of the app 
 app = MultiPage()
@@ -16,6 +16,8 @@ app.add_page("Forecasting", forecasting.app)
 app.add_page("Latar Belakang", background.app)
 app.add_page("Rumusan Masalah", problem.app)
 app.add_page("Tujuan Penelitian", purposes.app)
+app.add_page("Pembahasan", explaination.app)
+app.add_page("Kesimpulan", summary.app)
 app.add_page("About Us", about.app)
 
 # The main app
