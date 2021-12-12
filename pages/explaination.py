@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 def app():
-    st.header('Pemabahasan')
+    st.header('Pembahasan')
     st.subheader('Dataset')
     st.markdown("""
     &emsp; Dataset yang digunakan merupakan data keterisian tempat tidur rumah sakit pada wilayah DKI Jakarta untuk pasien isolasi dan ICU sejak tanggal 1 Desember 2020 - 21 November 2021
